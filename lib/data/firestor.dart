@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_to_do_list/model/notes_model.dart';
+import 'package:flutter_to_do_list/model/IdentityCard_model.dart';
 import 'package:uuid/uuid.dart';
 
 class Firestore_Datasource {
@@ -28,7 +28,7 @@ class Firestore_Datasource {
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection('cards')
           .doc(uuid)
           .set({
         'id': uuid,
@@ -49,7 +49,7 @@ class Firestore_Datasource {
     try {
       final notesList = snapshot.data!.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
-        return Note(
+        return Card(
           data['id'],
           data['subtitle'],
           data['time'],
@@ -69,7 +69,7 @@ class Firestore_Datasource {
     return _firestore
         .collection('users')
         .doc(_auth.currentUser!.uid)
-        .collection('notes')
+        .collection('cards')
         .where('isDon', isEqualTo: isDone)
         .snapshots();
   }
@@ -79,7 +79,7 @@ class Firestore_Datasource {
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection('cards')
           .doc(uuid)
           .update({'isDon': isDon});
       return true;
@@ -96,7 +96,7 @@ class Firestore_Datasource {
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection('cards')
           .doc(uuid)
           .update({
         'time': '${data.hour}:${data.minute}',
@@ -116,7 +116,7 @@ class Firestore_Datasource {
       await _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
-          .collection('notes')
+          .collection('cards')
           .doc(uuid)
           .delete();
       return true;

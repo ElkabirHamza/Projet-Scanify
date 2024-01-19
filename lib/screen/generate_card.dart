@@ -1,31 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/const/colors.dart';
 import 'package:flutter_to_do_list/data/firestor.dart';
-import 'package:flutter_to_do_list/model/notes_model.dart';
 
-class Edit_Screen extends StatefulWidget {
-  Note _note;
-  Edit_Screen(this._note, {super.key});
+class Add_creen extends StatefulWidget {
+  const Add_creen({super.key});
 
   @override
-  State<Edit_Screen> createState() => _Edit_ScreenState();
+  State<Add_creen> createState() => _Add_creenState();
 }
 
-class _Edit_ScreenState extends State<Edit_Screen> {
-  TextEditingController? title;
-  TextEditingController? subtitle;
+class _Add_creenState extends State<Add_creen> {
+  final title = TextEditingController();
+  final subtitle = TextEditingController();
 
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
   int indexx = 0;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    title = TextEditingController(text: widget._note.title);
-    subtitle = TextEditingController(text: widget._note.subtitle);
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColors,
@@ -56,11 +48,10 @@ class _Edit_ScreenState extends State<Edit_Screen> {
             minimumSize: Size(170, 48),
           ),
           onPressed: () {
-            Firestore_Datasource().Update_Note(
-                widget._note.id, indexx, title!.text, subtitle!.text);
+            Firestore_Datasource().AddNote(subtitle.text, title.text, indexx);
             Navigator.pop(context);
           },
-          child: Text('add task'),
+          child: Text('add Informations'),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -164,7 +155,7 @@ class _Edit_ScreenState extends State<Edit_Screen> {
           style: TextStyle(fontSize: 18, color: Colors.black),
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            hintText: 'subtitle',
+            hintText: '',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(

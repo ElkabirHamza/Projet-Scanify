@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_to_do_list/const/colors.dart';
-import 'package:flutter_to_do_list/screen/add_note_screen.dart';
+import 'package:flutter_to_do_list/screen/generate_card.dart';
 import 'package:flutter_to_do_list/widgets/stream_note.dart';
 
 class Home_Screen extends StatefulWidget {

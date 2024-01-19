@@ -1,5 +1,4 @@
-// Microsoft Visual C++ generated resource script.
-//
+
 #pragma code_page(65001)
 #include "resource.h"
 
@@ -13,8 +12,7 @@
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-/////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -93,7 +91,6 @@ BEGIN
             VALUE "FileDescription", "flutter_to_do_list" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "flutter_to_do_list" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "flutter_to_do_list.exe" "\0"
             VALUE "ProductName", "flutter_to_do_list" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
@@ -105,7 +102,7 @@ BEGIN
     END
 END
 
-#endif    // English (United States) resources
+#endif    
 /////////////////////////////////////////////////////////////////////////////
 
 

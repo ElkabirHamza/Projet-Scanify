@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_to_do_list/const/colors.dart';
 import 'package:flutter_to_do_list/data/firestor.dart';
-import 'package:flutter_to_do_list/model/notes_model.dart';
-import 'package:flutter_to_do_list/screen/edit_screen.dart';
+import 'package:flutter_to_do_list/model/IdentityCard_model.dart';
+import 'package:flutter_to_do_list/screen/edit_card.dart';
 
 class Task_Widget extends StatefulWidget {
-  Note _note;
-  Task_Widget(this._note, {super.key});
+  Card _card;
+  Task_Widget(this._card, {super.key});
 
   @override
   State<Task_Widget> createState() => _Task_WidgetState();
@@ -15,7 +15,7 @@ class Task_Widget extends StatefulWidget {
 class _Task_WidgetState extends State<Task_Widget> {
   @override
   Widget build(BuildContext context) {
-    bool isDone = widget._note.isDon;
+    bool isDone = widget._card.isDon;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Container(
@@ -40,7 +40,7 @@ class _Task_WidgetState extends State<Task_Widget> {
               // image
               imageee(),
               SizedBox(width: 25),
-              // title and subtitle
+              
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget._note.title,
+                          widget._card.title,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -64,13 +64,13 @@ class _Task_WidgetState extends State<Task_Widget> {
                               isDone = !isDone;
                             });
                             Firestore_Datasource()
-                                .isdone(widget._note.id, isDone);
+                                .isdone(widget._card.id, isDone);
                           },
                         )
                       ],
                     ),
                     Text(
-                      widget._note.subtitle,
+                      widget._card.subtitle,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
@@ -110,7 +110,7 @@ class _Task_WidgetState extends State<Task_Widget> {
                   Image.asset('images/icon_time.png'),
                   SizedBox(width: 10),
                   Text(
-                    widget._note.time,
+                    widget._card.time,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -125,7 +125,7 @@ class _Task_WidgetState extends State<Task_Widget> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Edit_Screen(widget._note),
+                builder: (context) => Edit_Screen(widget._card),
               ));
             },
             child: Container(
@@ -168,7 +168,7 @@ class _Task_WidgetState extends State<Task_Widget> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage('images/${widget._note.image}.png'),
+          image: AssetImage('images/${widget._card.image}.png'),
           fit: BoxFit.cover,
         ),
       ),

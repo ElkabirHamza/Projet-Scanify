@@ -16,17 +16,17 @@ class Stream_note extends StatelessWidget {
           if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
-          final noteslist = Firestore_Datasource().getNotes(snapshot);
+          final cardlists = Firestore_Datasource().getCards(snapshot);
           return ListView.builder(
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              final note = noteslist[index];
+              final card = cardslist[index];
               return Dismissible(
                   key: UniqueKey(),
                   onDismissed: (direction) {
-                    Firestore_Datasource().delet_note(note.id);
+                    Firestore_Datasource().delet_card(cards.id);
                   },
-                  child: Task_Widget(note));
+                  child: Task_Widget(cards));
             },
             itemCount: noteslist.length,
           );
